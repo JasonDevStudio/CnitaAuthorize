@@ -1,0 +1,59 @@
+﻿using Library.Common;
+using Library.Logic.Classes;
+using Library.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MvcApp.Areas.Manage.Controllers
+{
+    public class HomeController : BaseController
+    {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            Session["admin"] = null;
+            ViewBag.CustomScript = string.Empty;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(ModelUser user)
+        {
+            var resultMsg = string.Empty;
+            var logic = new LogicUser();
+            var model = logic.UserDetail(out resultMsg,base.AuthorizeInfo, user.Account);
+            if (model != null && user.Account.ToLower().Equals("admin") && 
+                model.Account.ToLower().Equals(user.Account.ToLower()) &&
+                model.Password.Equals(user.Password))
+            {
+                Session["admin"] = model.Account;
+                ViewBag.CustomScript = UtilityScript.ShowMessage("登录成功!", isCreate: true, isSuccess: true, funName: "Goto");
+            }
+            else
+            {
+                Session["admin"] = null;
+                ViewBag.CustomScript = UtilityScript.ShowMessage("登录失败!", isCreate: true, isSuccess: false);
+            }
+            return View(user);
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["admin"] = null;
+            return View("Login");
+        }
+
+        public ActionResult LogFail()
+        {
+            Session["admin"] = null;
+            return View();
+        }
+    }
+}
