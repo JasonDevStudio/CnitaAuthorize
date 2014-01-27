@@ -1,3 +1,3 @@
 CnitaAuthorize
 ==============
-Cnita ±ä¸ü°æ±¾
+Cnita å˜æ›´ç‰ˆæœ¬
