@@ -33,7 +33,7 @@ namespace MvcApp.Areas.Manage.Controllers
             var logic = new LogicOrganization();
             var criteria = new CriteriaOrganization.Pager();
             criteria.KeyWord = model.KeyWord;
-
+            criteria.AuthorizeInfo = base.AuthorizeInfo;
 
             var list = logic.QueryOrganizationListPager(out resultMsg, out recordCount, criteria, pageSize: pageSize, pageIndex: pageIndex);
             model.PagerRowCount = recordCount;

@@ -50,6 +50,7 @@ namespace MvcApp.Areas.Manage.Controllers
             if (string.IsNullOrWhiteSpace(id))
             {
                 model.Parentcateg = Category;
+                model.Createdate = DateTime.Now;
                 ViewBag.Categorys = base.QueryCategoryAll(string.IsNullOrWhiteSpace(Category) ? null : Category);
                 return View(model);
             }
@@ -98,6 +99,7 @@ namespace MvcApp.Areas.Manage.Controllers
             model.Parentcateg = string.IsNullOrWhiteSpace(model.Parentcateg) ? "0" : model.Parentcateg;
             model.Thumbnails = string.IsNullOrWhiteSpace(fileName) ? model.Thumbnails : fileName;
             model.Introduction = fc["editorValue"];
+            
             //数据保存
             LogicCategory logic = new LogicCategory();
             var res = logic.CategoryInsertUpdate(out resultMsg,base.AuthorizeInfo, model);

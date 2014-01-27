@@ -120,6 +120,7 @@ namespace MvcApp.Areas.Manage.Controllers
                 }
                 else
                 {
+                    model.Createdate = DateTime.Now;
                     categorys = QueryCategoryAll();
                     customScript = string.Empty;
                 }
@@ -169,13 +170,14 @@ namespace MvcApp.Areas.Manage.Controllers
                 model.Thumbnails = string.IsNullOrWhiteSpace(fileName) ? model.Thumbnails : fileName;
                 model.Status = Convert.ToInt32(model.IsPermission);
                 model.Isrecommend = Convert.ToInt32(model.IsRec);
+                model.Createdate = model.Createdate;
                 LogicArticle artDal = new LogicArticle();
                 var resultInsertUpdate = artDal.ArticleInsertUpdate(out resultMsg,base.AuthorizeInfo, model);
 
                 if (resultInsertUpdate > 0)
-                    ViewBag.CustomScript = UtilityScript.ShowMessage(resultMsg, isCreate: true, isSuccess: true, funName: "Goto");
+                    customScript = UtilityScript.ShowMessage(BaseDict.OperationSuccessfullyMsg, isCreate: true, isSuccess: true, funName: "Goto");
                 else
-                    ViewBag.CustomScript = UtilityScript.ShowMessage(resultMsg, isCreate: true, isSuccess: false, funName: "BtnShow");
+                    customScript = UtilityScript.ShowMessage(resultMsg, isCreate: true, isSuccess: false, funName: "BtnShow");
             }
             catch (AuthorizeException ex)
             {

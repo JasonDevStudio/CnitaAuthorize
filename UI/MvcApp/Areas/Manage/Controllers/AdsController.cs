@@ -33,7 +33,7 @@ namespace MvcApp.Areas.Manage.Controllers
             criteria.Category = model.Category;
             criteria.KeyWord = model.KeyWord;
             criteria.OwnerCategory = model.OwnerCategory;
-
+            criteria.AuthorizeInfo = base.AuthorizeInfo;
             var pageIndex = 0;
             var pageSize = 0;
             int.TryParse(PagerIndex, out pageIndex);

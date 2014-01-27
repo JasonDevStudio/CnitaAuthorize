@@ -2512,7 +2512,6 @@
     <Content Include="Content\themes\assets\plugins\fancybox\CHANGELOG.md" />
     <Content Include="Content\themes\assets\plugins\fancybox\README.md" />
     <Content Include="Content\themes\assets\plugins\flot\API.md" />
-    <Content Include="Content\themes\assets\plugins\flot\build.log" />
     <Content Include="Content\themes\assets\plugins\flot\CONTRIBUTING.md" />
     <Content Include="Content\themes\assets\plugins\flot\examples\ajax\data-eu-gdp-growth-1.json" />
     <Content Include="Content\themes\assets\plugins\flot\examples\ajax\data-eu-gdp-growth-2.json" />

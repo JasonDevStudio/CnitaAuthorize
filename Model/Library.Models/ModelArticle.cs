@@ -119,9 +119,8 @@ namespace Library.Models
 
         /// <summary> 
         /// 创建时间 
-        /// </summary>
-        [Required]
-        [Display(Name = "创建时间")]
+        /// </summary> 
+        [Display(Name = "创建时间")]        
         public DateTime Createdate { get;set;} 
 
     }

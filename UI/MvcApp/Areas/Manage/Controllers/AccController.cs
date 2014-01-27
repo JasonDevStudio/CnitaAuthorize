@@ -58,6 +58,7 @@ namespace MvcApp.Areas.Manage.Controllers
 
             ViewBag.Orgs = GetOrgs(Organization); 
             criteria.KeyWord = model.KeyWord;
+            criteria.AuthorizeInfo = base.AuthorizeInfo;
 
             var list = logic.QueryUserListPager(out resultMsg, out recordCount, criteria, pageSize: pageSize, pageIndex: pageIndex);
             model.PagerRowCount = recordCount;

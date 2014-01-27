@@ -15,7 +15,8 @@
                 <!--Jason.Yao <small>后台管理系统</small>-->
             </h3>
             <ul class="breadcrumb">
-                <li><i class="icon-home"></i><a href="@Url.Action("Index","Home")">后台管理</a>                <i class="icon-angle-right"></i></li>
+                <li><i class="icon-home"></i><a href="@Url.Action("Index","Home")">后台管理</a>
+                <i class="icon-angle-right"></i></li>
                 <li><a href="@Url.Action("Index", "Article")">文章管理</a></li>
                 <li class="pull-right no-text-shadow">
                     <div id="dashboard-report-range"
@@ -218,8 +219,5 @@
             });
         }
     </script>
-}
-@section Scripts{
-    @Html.Raw(ViewBag.CustomScript)
-}
-
+     @Html.Raw(ViewBag.CustomScript)
+} 

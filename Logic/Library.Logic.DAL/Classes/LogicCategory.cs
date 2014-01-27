@@ -127,7 +127,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "RowCount", ParameterInOut = BaseDict.ParmOut, ParameterType = DbType.String });
 
                 //查询执行
-                using (IDataReader dr = DBHelper.ExecuteReader(criteria.AuthorizeInfo,sql, true, parm))
+                using (IDataReader dr = DBHelper.ExecuteReader(criteria.AuthorizeInfo, sql, true, parm))
                 {
                     //DataReader 转换成 List
                     list = GetModel(dr);
@@ -173,7 +173,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "ID", ParameterValue = id, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
 
                 //查询执行
-                using (IDataReader dr = DBHelper.ExecuteReader(sql, authorizeInfo, true, parm))
+                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo, sql, true, parm))
                 {
                     IList<ModelCategory> list = GetModel(dr);
                     model = list.First();
@@ -211,7 +211,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "EndDate", ParameterValue = EndDate, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.DateTime });
 
                 //查询执行
-                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo,sql, true, parm))
+                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo, sql, true, parm))
                 {
                     IList<ModelCategory> list = GetModel(dr);
                     model = list.First();
@@ -248,7 +248,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "@IsNav", ParameterValue = IsNav, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.String });
 
                 //查询执行
-                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo,sql, true, parm))
+                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo, sql, true, parm))
                 {
                     list = GetModel(dr);
                 }
@@ -281,7 +281,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "@ParentCateg", ParameterValue = ParentCateg, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
 
                 //查询执行
-                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo,sql, true, parm))
+                using (IDataReader dr = DBHelper.ExecuteReader(authorizeInfo, sql, true, parm))
                 {
                     var listTemp = GetModelThree(dr);
                     list = GetCategoryAllThree(listTemp, ParentCateg);
@@ -323,12 +323,12 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "ISNAV", ParameterValue = category.Isnav, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
                 parm.Add(new DBParameter() { ParameterName = "ISINDEX", ParameterValue = category.Isindex, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
                 parm.Add(new DBParameter() { ParameterName = "STATUS", ParameterValue = category.Status, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
-                //parm.Add(new DBParameter() { ParameterName = "CREATEDATE", ParameterValue = category.Createdate, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.DateTime });
+                parm.Add(new DBParameter() { ParameterName = "CREATEDATE", ParameterValue = category.Createdate, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.DateTime });
                 //parm.Add(new DBParameter() { ParameterName = "resultMsg", ParameterInOut = BaseDict.ParmOut, ParameterType = DbType.String });
 
                 //新增/更新执行
-                res = DBHelper.ExecuteNonQuery(authorizeInfo,sql, true, parm, tran);
-                
+                res = DBHelper.ExecuteNonQuery(authorizeInfo, sql, true, parm, tran);
+
             }
             catch (AuthorizeException ex)
             {
@@ -349,7 +349,7 @@ namespace Library.Logic.Classes
         /// <param name="id">Id 类别</param>
         /// <param name="status">状态</param>
         /// <returns>执行结果</returns>
-        public int CategoryUpdateStatus(out string resultMsg,string authorizeInfo, Int32 id, Int32 status, DbTransaction tran = null)
+        public int CategoryUpdateStatus(out string resultMsg, string authorizeInfo, Int32 id, Int32 status, DbTransaction tran = null)
         {
             resultMsg = string.Empty;
             int res = 0;
@@ -363,7 +363,7 @@ namespace Library.Logic.Classes
                 parm.Add(new DBParameter() { ParameterName = "STATUS", ParameterValue = status, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
                 parm.Add(new DBParameter() { ParameterName = "resultMsg", ParameterInOut = BaseDict.ParmOut, ParameterType = DbType.String });
                 //更新执行
-                res = DBHelper.ExecuteNonQuery(authorizeInfo,sql, true, parm, tran);
+                res = DBHelper.ExecuteNonQuery(authorizeInfo, sql, true, parm, tran);
                 foreach (var item in parm)
                 {
                     //获取输出参数值
@@ -407,7 +407,7 @@ namespace Library.Logic.Classes
                 //parm.Add(new DBParameter() { ParameterName = "resultMsg", ParameterInOut = BaseDict.ParmOut, ParameterType = DbType.String });
 
                 //更新执行
-                res = DBHelper.ExecuteNonQuery(authorizeInfo,sql, true, parm, tran);
+                res = DBHelper.ExecuteNonQuery(authorizeInfo, sql, true, parm, tran);
                 //foreach (var item in parm)
                 //{
                 //    //获取输出参数值
@@ -430,7 +430,7 @@ namespace Library.Logic.Classes
             }
             return res;
         }
-                
+
 
     }
 }

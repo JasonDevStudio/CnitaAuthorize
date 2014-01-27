@@ -300,6 +300,7 @@ namespace Library.Logic.DAL
                 parm.Add(new DBParameter() { ParameterName = "TITLECOLOR", ParameterValue = article.Titlecolor, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.String });
                 parm.Add(new DBParameter() { ParameterName = "TITLEISBOLD", ParameterValue = article.Titleisbold, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
                 parm.Add(new DBParameter() { ParameterName = "STATUS", ParameterValue = article.Status, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.Int32 });
+                parm.Add(new DBParameter() { ParameterName = "CreateDate", ParameterValue = article.Createdate, ParameterInOut = BaseDict.ParmIn, ParameterType = DbType.DateTime });
 
                 //新增/更新执行
                 res = DBHelper.ExecuteNonQuery(authorizeInfo, sql, true, parm, tran);

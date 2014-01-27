@@ -5,7 +5,7 @@
     Layout = "~/Areas/Manage/Views/Shared/_manage.cshtml";
 }
 
-
+<script src="@Url.Content("~/Scripts/My97DatePicker/WdatePicker.js")"></script>
 <div class="container-fluid">
     <!-- BEGIN PAGE HEADER-->
     <div class="row-fluid">
@@ -96,6 +96,15 @@
                                     <div class="controls">
                                         @Html.TextBoxFor(model => model.Sort, new { @class = "input-xlarge span6" })
                                         <p class="help-block"><i class="warning">@Html.ValidationMessageFor(model => model.Sort)</i></p>
+                                    </div>
+                                </div>
+
+                                @*发布时间*@
+                                <div class="control-group">
+                                    <label class="control-label" for="input01">@Html.LabelFor(model => model.Createdate)</label>
+                                    <div class="controls">
+                                        @Html.TextBoxFor(model => model.Createdate,"{0:yyyy-MM-dd}", new { @class = "Wdate input-xlarge span6", value = "Admin" ,onFocus="WdatePicker()"})
+                                        <p class="help-block"><i class="warning">@Html.ValidationMessageFor(model => model.Createdate)</i></p>
                                     </div>
                                 </div>
 
