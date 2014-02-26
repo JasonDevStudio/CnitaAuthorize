@@ -113,7 +113,9 @@
                         $.JasonPager.Submit(pageCode);
                     });
                 });
-            }
+            } 
+            
+            
         },
         Submit: function (pageIndex) {
             var pagerIndex = 1;
@@ -136,7 +138,7 @@
                         complete: $.JasonPager.defaults.pagerOnComplete()
                     });
             } else {
-                document.forms[$.JasonPager.defaults.pagerFormId].action = $.JasonPager.defaults.pagerActionUrl + "?pagerIndex=" + pagerIndex + "&&pagerSize=" + $.JasonPager.defaults.pagerSize;
+                $("#" + this.defaults.pagerFormId).append("<input type='hidden' id='PagerIndex' value='" + pageIndex + "' />" + "<input type='hidden' id='PagerSize' value='" + this.defaults.pagerSize + "' />");               
                 document.forms[$.JasonPager.defaults.pagerFormId].submit();
             }
         }
