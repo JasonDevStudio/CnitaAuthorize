@@ -7,11 +7,11 @@
 @using MvcApp.Areas.Manage.Models
 
 @section SubContentNav{
-    <p>@Model.KeyWord</p>
+    <p>@ViewBag.KeyWord</p>
 }
 
 <div style="display: none;">
-    <form id="MainForm" action="@Url.Action("Index", "Article")" method="post">
+    <form id="MainForm" action="@Request.Url.ToString()" method="post">
         @Html.HiddenFor(model => model.Category)
         @Html.HiddenFor(model => model.CategoryTwo)
         @Html.HiddenFor(model => model.KeyWord)
@@ -41,7 +41,7 @@
         <div class="contlist">
             <p style="text-align: center">@ViewData["resultMsg"]</p>
         </div>
-    } 
+    }
     <br />
     <!--分页 开始-->
     <div>

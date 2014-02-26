@@ -24,7 +24,7 @@ namespace MvcApp.Controllers
             var model = new ModelPagerArticle();
             model.PagerCount = 0;
             model.PagerIndex = 1;
-             
+
             var pageIndex = 0;
             var pageSize = 0;
             int.TryParse(PagerIndex, out pageIndex);
@@ -46,11 +46,12 @@ namespace MvcApp.Controllers
             model.PagerIndex = pageIndex;
             model.Category = Category;
             model.CategoryTwo = CategoryTwo;
+            model.KeyWord = KeyWord;
             if (list.Count > 0)
             {
-                model.KeyWord = list.First().CategoryName;
+                ViewBag.KeyWord = string.IsNullOrWhiteSpace(KeyWord) ? list.First().CategoryName : KeyWord;
             }
-             
+
             return model;
         }
 
@@ -87,7 +88,7 @@ namespace MvcApp.Controllers
             int.TryParse(Id, out categoryId);
 
             IList<ModelCategory> list = new List<ModelCategory>();
-            list = logic.CategoryAll(out resultMsg,base.AuthorizeInfo, categoryId, "2");
+            list = logic.CategoryAll(out resultMsg, base.AuthorizeInfo, categoryId, "2");
             var modelList = (from ModelCategory m in list
                              where m.Id == categoryId
                              select m).ToList();
@@ -199,7 +200,7 @@ namespace MvcApp.Controllers
             var monthDays = DateTime.DaysInMonth(iYear, iMonth);
             var startDate = new DateTime(iYear, iMonth, 1, 0, 0, 0);
             var endDate = new DateTime(iYear, iMonth, monthDays, 23, 59, 59);
-            var cateModel = logic.CategoryDetailByPid(out resultMsg,base.AuthorizeInfo, idx, startDate, endDate);
+            var cateModel = logic.CategoryDetailByPid(out resultMsg, base.AuthorizeInfo, idx, startDate, endDate);
 
             if (cateModel != null)
             {
@@ -211,7 +212,7 @@ namespace MvcApp.Controllers
                 model.Category = Category;
             }
 
-            return View(model); 
+            return View(model);
         }
     }
 }

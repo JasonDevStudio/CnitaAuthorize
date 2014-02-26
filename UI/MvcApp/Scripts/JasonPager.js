@@ -138,7 +138,8 @@
                         complete: $.JasonPager.defaults.pagerOnComplete()
                     });
             } else {
-                $("#" + this.defaults.pagerFormId).append("<input type='hidden' id='PagerIndex' value='" + pageIndex + "' />" + "<input type='hidden' id='PagerSize' value='" + this.defaults.pagerSize + "' />");               
+                $("#" + this.defaults.pagerFormId).append("<input type='hidden' id='JasonPagerIndex' name='JasonPagerIndex' value='" + pageIndex + "' />" + "<input type='hidden' id='JasonPagerSize' name='JasonPagerSize' value='" + this.defaults.pagerSize + "' />");
+                $("#" + this.defaults.pagerFormId).append("<input type='hidden' id='PagerIndex' name='PagerIndex' value='" + pageIndex + "' />" + "<input type='hidden' id='PagerSize' name='PagerSize' value='" + this.defaults.pagerSize + "' />");
                 document.forms[$.JasonPager.defaults.pagerFormId].submit();
             }
         }

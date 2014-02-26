@@ -8,11 +8,11 @@
 
 
 @section SubContentNav{
-    <p>@Model.KeyWord</p>
+    <p>@ViewBag.KeyWord</p>
 }
 
 @section Sidebar{
-   @*协会介绍*@
+    @*协会介绍*@
     @Html.Action("SidebarCategory", "Home", new { categoryCode = ViewBag.Category, adsCategoryCode = "33" })
     @*会员企业*@
     @Html.Action("SidebarCategory", "Home", new { categoryCode = "38", adsCategoryCode = "33" })
@@ -27,9 +27,10 @@
 
 
 <div style="display: none;">
-    <form id="MainForm" action="@Url.Action("AssocList", "Article")">
+    <form id="MainForm" action="@Request.Url.ToString()" method="post">
         @Html.HiddenFor(model => model.Category)
         @Html.HiddenFor(model => model.CategoryTwo)
+        @Html.HiddenFor(model => model.KeyWord) 
     </form>
 </div>
 <!--列表 开始-->
@@ -41,7 +42,7 @@
         {
         <div class="contlist">
             <div class="contlist_title">
-                <a href="@Url.Action("Assoc", "Article", new { Id = item.Id })">·@Library.Common.CommonMethod.ObjSubstringByLength(item.Title, 20)</a>
+                <a href="@Url.Action("Assoc", "Article" )?Id=@item.Id&&categoryCode=@ViewBag.Category">·@Library.Common.CommonMethod.ObjSubstringByLength(item.Title, 20)</a>
             </div>
             <div class="contlist_date">
                 @string.Format("{0:yyyy-MM-dd}", item.Createdate)
@@ -82,11 +83,12 @@
 
             $.JasonPager.Load({
                 pagerIndex: @Model.PagerIndex,                                   //当前页码
-                pagerSize: 10,                                   //每页显示数量
+                pagerSize: 30,                                   //每页显示数量
                 pagerCount: @Model.PagerCount,                                   //总页数  $(data).find("#PagerCount").val()
-                pagerShowCount: 10,                                //分页控件显示页数
-                pagerActionUrl: $("#mainForm").action,
-                pagerActiveStyle: "active"
+                pagerShowCount: 30,                                //分页控件显示页数
+                pagerActionUrl: $("#MainForm").action,
+                pagerActiveStyle: "active",
+                pagerFormId:"MainForm"
             });
             
         });
